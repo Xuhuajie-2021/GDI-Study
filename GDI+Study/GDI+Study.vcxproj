@@ -79,6 +79,9 @@
     <Text Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="chapter1.h" />
+    <ClInclude Include="chapter2.h" />
+    <ClInclude Include="chapter3.h" />
     <ClInclude Include="GDI+Study.h" />
     <ClInclude Include="Resource.h" />
     <ClInclude Include="stdafx.h" />

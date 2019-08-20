@@ -30,6 +30,15 @@
     <ClInclude Include="GDI+Study.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="chapter3.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="chapter2.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="chapter1.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
