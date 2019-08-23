@@ -73,6 +73,11 @@ Rect GetRandomRect(int xmax, int ymax)
 	return t;
 }
 
+Color getRandomColor()
+{
+	return Color(rand() % 255, rand() % 255, rand() % 255);
+}
+
 //描点
 void DrawEllipsePoint(HDC hdc, Point t)
 {
@@ -132,6 +137,24 @@ void FillSinRegion(HDC hdc, int xmax, int ymax)
 	//众项长度单位1=多少像素
 	REAL perY = (ymax - 100)*1.0 / 2;
 
+	GraphicsPath tpath(FillModeAlternate);
+	for (float i = 0.0f; i < 2 * Pi + 0.1;i+=Pi/180)
+	{
+		REAL x = i*perX + 50;
+		REAL y = sin(i)*perY + ymax / 2;
+
+		tpath.AddLine(x, y, x, y);
+	}
+
+	Graphics graphics(hdc);
+	SolidBrush blue(Color(255 / 2, 0, 0, 255));
+	graphics.FillPath(&blue, &tpath);
+
+
+
+
+
+	/*
 	//画点，理论上越多越精确，我们取500+1点。大家可以试试更多
 	const int counts = 500;
 	Point t[counts * 2];
@@ -143,25 +166,24 @@ void FillSinRegion(HDC hdc, int xmax, int ymax)
 	//计算正弦值
 	for (int i = 1; i < counts; i++)
 	{
-		t[i].X = t[i - 1].X + step;
-		REAL v = sin(i*stepX);
-		t[i].Y = ymax / 2 - v*perY;
+	t[i].X = t[i - 1].X + step;
+	REAL v = sin(i*stepX);
+	t[i].Y = ymax / 2 - v*perY;
 	}
 	//画x轴
 	t[counts].X = t[counts - 1].X;
 	t[counts].Y = ymax / 2;
 	for (int i = 1; i < counts; i++)
 	{
-		t[counts + i].X = t[counts + i - 1].X - step;
-		t[counts + i].Y = ymax / 2;
+	t[counts + i].X = t[counts + i - 1].X - step;
+	t[counts + i].Y = ymax / 2;
 	}
 
-	Graphics graphics(hdc);
-	SolidBrush blue(Color(255 / 2, 0, 0, 255));
+
 	Pen r(Color::Red);
 	graphics.DrawPolygon(&r, t, counts * 2);
 	graphics.FillClosedCurve(&blue, t, counts * 2);
-
+	*/
 }
 
 void  PrintText(HDC hdc, int xmax, int ymax)
