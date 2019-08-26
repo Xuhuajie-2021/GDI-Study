@@ -17,6 +17,7 @@ using namespace std;
 #include "chapter1.h"
 #include "chapter2.h"
 #include "chapter3.h"
+#include "chapter4.h"
 
 #define MAX_LOADSTRING 100
 
@@ -163,7 +164,10 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 		{
 		case IDM_ABOUT:
 			//DialogBox(hInst, MAKEINTRESOURCE(IDD_ABOUTBOX), hWnd, About);
-			OnPrintOut();
+			hdc = GetDC(hWnd);
+			GetClientRect(hWnd, &ps.rcPaint);
+			OnGDIPlusFontChoose(hdc, ps.rcPaint.right - ps.rcPaint.left, ps.rcPaint.bottom - ps.rcPaint.top);
+			ReleaseDC(hWnd, hdc);
 			break;
 		case IDM_EXIT:
 			DestroyWindow(hWnd);
@@ -175,7 +179,7 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 	case WM_PAINT:
 		hdc = BeginPaint(hWnd, &ps);
 		// TODO:  在此添加任意绘图代码...
-		DrawBrushPathGamma(hdc, ps.rcPaint.right - ps.rcPaint.left, ps.rcPaint.bottom - ps.rcPaint.top);
+		DrawFontGridant(hdc, ps.rcPaint.right - ps.rcPaint.left, ps.rcPaint.bottom - ps.rcPaint.top);
 		EndPaint(hWnd, &ps);
 		break;
 	case WM_DESTROY:

@@ -21,6 +21,7 @@
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>v120</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
+    <UseOfMfc>Static</UseOfMfc>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
@@ -82,6 +83,7 @@
     <ClInclude Include="chapter1.h" />
     <ClInclude Include="chapter2.h" />
     <ClInclude Include="chapter3.h" />
+    <ClInclude Include="chapter4.h" />
     <ClInclude Include="GDI+Study.h" />
     <ClInclude Include="Resource.h" />
     <ClInclude Include="stdafx.h" />
