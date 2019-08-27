@@ -84,6 +84,7 @@
     <ClInclude Include="chapter2.h" />
     <ClInclude Include="chapter3.h" />
     <ClInclude Include="chapter4.h" />
+    <ClInclude Include="chapter5.h" />
     <ClInclude Include="GDI+Study.h" />
     <ClInclude Include="Resource.h" />
     <ClInclude Include="stdafx.h" />

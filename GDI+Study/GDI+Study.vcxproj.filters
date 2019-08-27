@@ -42,6 +42,9 @@
     <ClInclude Include="chapter4.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="chapter5.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">

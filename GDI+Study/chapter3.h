@@ -1,4 +1,7 @@
 #pragma once
+
+//本章是画笔与画刷的例子
+
 const REAL PI = 3.1415926f;
 
 void DrawPenTexture(HDC hdc,int x,int y)

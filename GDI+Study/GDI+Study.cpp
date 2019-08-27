@@ -14,10 +14,13 @@
 using namespace Gdiplus;
 using namespace std;
 
+#pragma warning(disable:4244) 
+
 #include "chapter1.h"
 #include "chapter2.h"
 #include "chapter3.h"
 #include "chapter4.h"
+#include "chapter5.h"
 
 #define MAX_LOADSTRING 100
 
@@ -179,11 +182,18 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 	case WM_PAINT:
 		hdc = BeginPaint(hWnd, &ps);
 		// TODO:  在此添加任意绘图代码...
-		DrawFontGridant(hdc, ps.rcPaint.right - ps.rcPaint.left, ps.rcPaint.bottom - ps.rcPaint.top);
+		DrawRegionFromPath(hdc, ps.rcPaint.right - ps.rcPaint.left, ps.rcPaint.bottom - ps.rcPaint.top);
 		EndPaint(hWnd, &ps);
 		break;
 	case WM_DESTROY:
 		PostQuitMessage(0);
+		break;
+	case WM_MOUSEMOVE:
+		if (wParam & MK_LBUTTON)
+		{
+			DrawRegionHitTest(hdc = GetDC(hWnd), GET_X_LPARAM(lParam),GET_Y_LPARAM(lParam));
+		}
+		
 		break;
 	default:
 		return DefWindowProc(hWnd, message, wParam, lParam);

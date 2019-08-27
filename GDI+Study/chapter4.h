@@ -1,5 +1,6 @@
 #pragma once
 
+//本章主要是字体的例子
 
 void OnGDIFontChoose(HDC hdc,int xmax, int ymax)
 {
@@ -266,29 +267,66 @@ void DrawFontGridant(HDC hdc, int xmax, int ymax)
 	FontFamily ff(_T("Arial"));
 	Font f(&ff, 100, FontStyleRegular, UnitPixel);
 
-	CString str = _T("阴影字");
+	CString str = _T("阴影字ABC123");
 	StringFormat sf;
-	sf.SetFormatFlags(StringFormatFlagsNoFitBlackBox | StringFormatFlagsNoClip);
-	sf.SetLineAlignment(StringAlignmentNear);
-	sf.SetAlignment(StringAlignmentNear);
+	g.SetTextRenderingHint(TextRenderingHintAntiAlias);
 	CharacterRange* pRange = new CharacterRange[str.GetLength()];
-	for (int i = 0; i < str.GetLength();++i)
+	for (int i = 0; i < str.GetLength(); ++i)
 	{
 		pRange[i].First = i;
 		pRange[i].Length = 1;
 	}
 	sf.SetMeasurableCharacterRanges(str.GetLength(), pRange);
-	
+
 	Region* pRegion = new Region[str.GetLength()];
 	g.MeasureCharacterRanges(str, -1, &f, RectF(0, 0, xmax, ymax), &sf, str.GetLength(), pRegion);
-	g.FillRegion(&SolidBrush(Color(100, 0, 0, 0)), &pRegion[2]);
+	RectF rect;
+	REAL startpos = 0.0f;
 	for (int i = 0; i < str.GetLength(); ++i)
 	{
-		
-		RectF rect;
 		pRegion[i].GetBounds(&rect, &g);
 		LinearGradientBrush lgb(rect, Color::Red, Color::Blue, LinearGradientModeHorizontal);
-		g.DrawString(CString(str.GetAt(i)), -1, &f, rect, &sf, &lgb);
+
+		g.DrawString(CString(str.GetAt(i)), -1, &f, RectF(rect.X-rect.Width/5.0 , 0.0f, 2*rect.Width, rect.Height), &sf, &lgb);
+		startpos += rect.Width;
 	}
-	
+
 }
+
+void DrawFontGridant2(HDC hdc, int xmax, int ymax)
+{
+	Graphics g(hdc);
+	g.SetTextRenderingHint(TextRenderingHintSystemDefault);
+	FontFamily ff(_T("Arial"));
+	Font f(&ff, 100, FontStyleRegular, UnitPixel);
+
+	CString str = _T("阴影字ABC123");
+	StringFormat sf;
+	g.SetTextRenderingHint(TextRenderingHintAntiAlias);
+
+	RectF outbound;
+	RectF drawRect = {0,0,0,0};
+
+	for (int i = 0; i < str.GetLength(); ++i)
+	{
+		g.MeasureString(CString(str.GetAt(i)), 1, &f, RectF(0, 0, xmax, ymax), &outbound);
+		if (i == 0)
+		{
+			outbound.Width -= outbound.Width / 6;
+			drawRect = outbound;
+			g.FillRectangle(&SolidBrush(Color(100, 0, 0, 0)), drawRect);
+		}
+		else
+		{
+			drawRect.X += outbound.Width;
+			drawRect.Width = outbound.Width;
+		}
+		
+		LinearGradientBrush lgb(drawRect, Color::Red, Color::Blue, LinearGradientModeHorizontal);
+		g.FillRectangle(&SolidBrush(Color(100, 0, 0, 0)), drawRect);
+		g.DrawString(CString(str.GetAt(i)), -1, &f, drawRect, &sf, &lgb);
+		
+	}
+
+}
+

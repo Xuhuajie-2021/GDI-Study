@@ -1,5 +1,6 @@
 #pragma once
 
+//基本绘图函数的使用
 void GDIPlusDrawRectangles(HDC hdc)
 {
 	Graphics graphics(hdc);
@@ -130,7 +131,7 @@ void DrawArcPie(HDC hdc, int xmax, int ymax)
 //用半透明蓝色填充 填充sinx 与 x轴的区域
 void FillSinRegion(HDC hdc, int xmax, int ymax)
 {
-	const REAL Pi = 3.1415926;
+	const REAL Pi = 3.1415926f;
 	//从0 到 2pi
 	//计算1弧度=多少像素,从50px ->xmax-50px 画
 	REAL perX = (xmax - 100)*1.0 / (2 * Pi);
