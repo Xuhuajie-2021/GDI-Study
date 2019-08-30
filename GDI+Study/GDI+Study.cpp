@@ -18,10 +18,11 @@ using namespace std;
 
 #include "chapter1.h"
 #include "chapter2.h"
-#include "chapter3.h"
-#include "chapter4.h"
-#include "chapter5.h"
-
+// #include "chapter3.h"
+// #include "chapter4.h"
+// #include "chapter5.h"
+//#include "Chapter6.h"
+#include "chapter7.h"
 #define MAX_LOADSTRING 100
 
 // 全局变量: 
@@ -169,7 +170,7 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 			//DialogBox(hInst, MAKEINTRESOURCE(IDD_ABOUTBOX), hWnd, About);
 			hdc = GetDC(hWnd);
 			GetClientRect(hWnd, &ps.rcPaint);
-			OnGDIPlusFontChoose(hdc, ps.rcPaint.right - ps.rcPaint.left, ps.rcPaint.bottom - ps.rcPaint.top);
+			//OnGDIPlusFontChoose(hdc, ps.rcPaint.right - ps.rcPaint.left, ps.rcPaint.bottom - ps.rcPaint.top);
 			ReleaseDC(hWnd, hdc);
 			break;
 		case IDM_EXIT:
@@ -182,7 +183,7 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 	case WM_PAINT:
 		hdc = BeginPaint(hWnd, &ps);
 		// TODO:  在此添加任意绘图代码...
-		DrawRegionFromPath(hdc, ps.rcPaint.right - ps.rcPaint.left, ps.rcPaint.bottom - ps.rcPaint.top);
+		DrawKoutu(hdc, ps.rcPaint.right - ps.rcPaint.left, ps.rcPaint.bottom - ps.rcPaint.top);
 		EndPaint(hWnd, &ps);
 		break;
 	case WM_DESTROY:
@@ -191,7 +192,7 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 	case WM_MOUSEMOVE:
 		if (wParam & MK_LBUTTON)
 		{
-			DrawRegionHitTest(hdc = GetDC(hWnd), GET_X_LPARAM(lParam),GET_Y_LPARAM(lParam));
+			//DrawRegionHitTest(hdc = GetDC(hWnd), GET_X_LPARAM(lParam),GET_Y_LPARAM(lParam));
 		}
 		
 		break;
