@@ -22,7 +22,8 @@ using namespace std;
 // #include "chapter4.h"
 // #include "chapter5.h"
 //#include "Chapter6.h"
-#include "chapter7.h"
+//#include "chapter7.h"
+#include "chapter8.h"
 #define MAX_LOADSTRING 100
 
 // 全局变量: 
@@ -183,7 +184,7 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 	case WM_PAINT:
 		hdc = BeginPaint(hWnd, &ps);
 		// TODO:  在此添加任意绘图代码...
-		DrawKoutu(hdc, ps.rcPaint.right - ps.rcPaint.left, ps.rcPaint.bottom - ps.rcPaint.top);
+		DrawImageClone(hdc, ps.rcPaint.right - ps.rcPaint.left, ps.rcPaint.bottom - ps.rcPaint.top);
 		EndPaint(hWnd, &ps);
 		break;
 	case WM_DESTROY:
