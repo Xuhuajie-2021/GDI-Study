@@ -81,6 +81,8 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="chapter1.h" />
+    <ClInclude Include="chapter10.h" />
+    <ClInclude Include="chapter11.h" />
     <ClInclude Include="chapter2.h" />
     <ClInclude Include="chapter3.h" />
     <ClInclude Include="chapter4.h" />
@@ -88,6 +90,7 @@
     <ClInclude Include="Chapter6.h" />
     <ClInclude Include="chapter7.h" />
     <ClInclude Include="chapter8.h" />
+    <ClInclude Include="chapter9.h" />
     <ClInclude Include="GDI+Study.h" />
     <ClInclude Include="Resource.h" />
     <ClInclude Include="stdafx.h" />
